@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/your-repo/weather-api.git'
+                git 'https://github.com/meghaml22/weather-api.git'
             }
         }
 
