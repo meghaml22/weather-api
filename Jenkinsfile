@@ -24,7 +24,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    sh 'docker run --rm ${IMAGE_NAME} pytest tests/test_app.py'
+                    bat 'docker run --rm ${IMAGE_NAME} pytest tests/test_app.py'
                 }
             }
         }
@@ -33,11 +33,11 @@ pipeline {
             steps {
                 script {
                     // Stop and remove any existing container
-                    sh "docker stop ${CONTAINER_NAME} || true"
-                    sh "docker rm ${CONTAINER_NAME} || true"
+                    bat "docker stop ${CONTAINER_NAME} || true"
+                    bat "docker rm ${CONTAINER_NAME} || true"
 
                     // Run new container
-                    sh "docker run -d --name ${CONTAINER_NAME} -p 5000:5000 ${IMAGE_NAME}"
+                    bat "docker run -d --name ${CONTAINER_NAME} -p 5000:5000 ${IMAGE_NAME}"
                 }
             }
         }
