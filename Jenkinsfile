@@ -16,7 +16,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${IMAGE_NAME}", ".")
+                    docker.build("${weather-api}", ".")
                 }
             }
         }
@@ -24,7 +24,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    bat 'docker run --rm ${IMAGE_NAME} pytest tests/test_app.py'
+                    bat 'docker run --rm ${weather-api} pytest tests/test_app.py'
                 }
             }
         }
@@ -33,11 +33,11 @@ pipeline {
             steps {
                 script {
                     // Stop and remove any existing container
-                    bat "docker stop ${CONTAINER_NAME} || true"
-                    bat "docker rm ${CONTAINER_NAME} || true"
+                    bat "docker stop ${nostalgic_heyro} || true"
+                    bat "docker rm ${nostalgic_heyro} || true"
 
                     // Run new container
-                    bat "docker run -d --name ${CONTAINER_NAME} -p 5000:5000 ${IMAGE_NAME}"
+                    bat "docker run -d --name ${nostalgic_heyro} -p 5000:5000 ${IMAGE_NAME}"
                 }
             }
         }
